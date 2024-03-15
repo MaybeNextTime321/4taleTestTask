@@ -11,6 +11,8 @@ class USpringArmComponent;
 class UCameraComponent;
 class UInputMappingContext;
 class UInputAction;
+class UHealthComponent;
+class UWeaponComponent;
 struct FInputActionValue;
 
 DECLARE_LOG_CATEGORY_EXTERN(LogTemplateCharacter, Log, All);
@@ -43,6 +45,14 @@ class ATestTask4TaleCharacter : public ACharacter
 	/** Look Input Action */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
 	UInputAction* LookAction;
+
+	/** Health Component */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = HealthComponent, meta = (AllowPrivateAccess = "true"))
+	UHealthComponent* HealthComponent;
+
+	/** Health Component */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = WeaponComponent, meta = (AllowPrivateAccess = "true"))
+	UWeaponComponent* WeaponComponent;
 
 public:
 	ATestTask4TaleCharacter();
