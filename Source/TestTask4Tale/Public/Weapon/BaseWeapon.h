@@ -30,24 +30,34 @@ UCLASS()
 class TESTTASK4TALE_API ABaseWeapon : public AActor
 {
 	GENERATED_BODY()
-	
-public:	
+
+public:
 	ABaseWeapon();
-	virtual void Shoot();
-	virtual void Reload();
+
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "ShootAction")
+	void Shoot();
+	virtual void Shoot_Implementation();
+
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "ShootAction")
+	void Reload();
+	virtual void Reload_Implementation();
+
+	UFUNCTION(BlueprintCallable, Category = "WeaponData")
+	void GetAmmoData(int32& BulletCount, int32& ClipsCount);
 
 	UPROPERTY(EditDefaultsOnly, Category = WeaponData)
 	FWeaponData WeaponData;
 
+
+
 protected:
 	virtual void BeginPlay() override;
 
-
-
-private:	
-
-
-	UPROPERTY(VisibleAnywhere, Category = "Weapon")
+	UPROPERTY(BlueprintReadOnly, VisibleAnywhere, Category = "Weapon")
 	USkeletalMeshComponent* SkeletalMesh;
+
+private:
+	int32 CurrentBullet;
+	int32 CurrentClips;
 
 };

@@ -17,9 +17,11 @@ class TESTTASK4TALE_API UHealthComponent : public UActorComponent
 
 public:	
 	UHealthComponent();
+	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 
 	bool IsAlive() const { return bIsAlive; }
-
+	
+	UFUNCTION(BlueprintCallable)
 	void ReceiveDamage(int32 DamageAmount);
 
 	UPROPERTY(EditAnywhere, Category = Health, meta = (ClampMin = "0", ClampMax = "100.0"))
@@ -27,13 +29,17 @@ public:
 
 	FOnHealthChanged OnHealthChangedDelegate;
 
+	UFUNCTION(BlueprintCallable)
+	int32 GetHP() { return Health; }
 
 
 protected:
 	virtual void BeginPlay() override;
 
+	UPROPERTY(Replicated)
+	int32 Health = 0;
 private:	
 	bool bIsAlive = true;
-	int32 Health = 0;
+	
 
 };

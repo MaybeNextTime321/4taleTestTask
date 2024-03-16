@@ -17,12 +17,20 @@ public:
 	// Sets default values for this component's properties
 	UWeaponComponent();
 
+	UFUNCTION(BlueprintCallable, Category = WeaponData)
+	ABaseWeapon* GetCurrentAmmo()const 
+	{
+		return CurrentWeapon;
+	}
 
 protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
 	int32 CurrentWeaponIndex;
 	ABaseWeapon* CurrentWeapon;
+
+	UFUNCTION(BlueprintCallable, Category = WeaponAction)
+	void StartShooting();
 
 private:	
 	UPROPERTY(EditAnywhere, Category = WeaponData)

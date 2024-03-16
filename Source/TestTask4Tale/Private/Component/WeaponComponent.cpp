@@ -15,6 +15,8 @@ UWeaponComponent::UWeaponComponent()
 }
 
 
+
+
 // Called when the game starts
 void UWeaponComponent::BeginPlay()
 {
@@ -28,6 +30,17 @@ void UWeaponComponent::BeginPlay()
 	checkf(AmmoData.Num() > 0 , TEXT("Add at least one weapon"));
 
 	
+}
+
+void UWeaponComponent::StartShooting()
+{
+	if (!CurrentWeapon)
+	{
+		return;
+	}
+
+	CurrentWeapon->Shoot();
+
 }
 
 void UWeaponComponent::SpawnWeapon()

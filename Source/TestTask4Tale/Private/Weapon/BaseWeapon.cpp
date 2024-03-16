@@ -11,20 +11,31 @@ ABaseWeapon::ABaseWeapon()
 
 	SkeletalMesh = CreateDefaultSubobject<USkeletalMeshComponent>("SceletalMesh");
 	SetRootComponent(SkeletalMesh);
+
+
 }
 
-void ABaseWeapon::Shoot()
+void ABaseWeapon::Reload_Implementation()
 {
 }
 
-void ABaseWeapon::Reload()
+void ABaseWeapon::Shoot_Implementation()
 {
 }
+
+void ABaseWeapon::GetAmmoData(int32& BulletCount, int32& ClipsCount)
+{
+	BulletCount = CurrentBullet;
+	ClipsCount = CurrentClips;
+}
+
+
 
 void ABaseWeapon::BeginPlay()
 {
 	Super::BeginPlay();
-	
+	CurrentBullet = WeaponData.BulletCount;
+	CurrentClips = WeaponData.ClipsCount;
 }
 
 
